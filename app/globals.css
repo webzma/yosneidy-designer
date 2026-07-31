@@ -1,0 +1,113 @@
+@import "tailwindcss";
+
+/* The theme is switched by a toggle in the navbar, not by the OS setting, so
+   `dark:` has to key off a class on <html> instead of prefers-color-scheme. */
+@custom-variant dark (&:where(.dark, .dark *));
+
+@theme {
+  --color-paper: #fcfcfc;
+  --color-ink: #0d0d0d;
+  --color-muted: #9c9c9c;
+  --color-available: #82c25b;
+
+  --font-sans: var(--font-inter), ui-sans-serif, system-ui, sans-serif;
+  --font-display: var(--font-inter-display), var(--font-inter), sans-serif;
+  --font-script: var(--font-pecita), cursive;
+
+  /* Page gutter. 24px on desktop matches the original's near-full-bleed grid. */
+  --spacing-gutter: 1.5rem;
+}
+
+@layer base {
+  html {
+    /* Native smooth scrolling stays off so it never fights Lenis; the padding
+       still keeps anchored sections clear of the fixed navbar on plain jumps. */
+    scroll-padding-top: 6rem;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  /* Lenis base rules (from lenis/dist/lenis.css, only what this page uses). */
+  html.lenis,
+  html.lenis body {
+    height: auto;
+  }
+
+  .lenis.lenis-smooth {
+    scroll-behavior: auto !important;
+  }
+
+  .lenis.lenis-stopped {
+    overflow: clip;
+  }
+
+  body {
+    background: var(--color-paper);
+    color: var(--color-ink);
+    font-family: var(--font-sans);
+    font-size: 0.875rem;
+    font-weight: 500;
+    line-height: 1.2;
+  }
+
+  .dark body {
+    background: #000;
+    color: var(--color-paper);
+  }
+
+  /* Colour swap on theme change, but never on the images or transforms. */
+  body,
+  body * {
+    transition:
+      background-color 0.4s ease,
+      color 0.4s ease,
+      border-color 0.4s ease;
+  }
+
+  ::selection {
+    background: var(--color-ink);
+    color: var(--color-paper);
+  }
+  .dark ::selection {
+    background: var(--color-paper);
+    color: var(--color-ink);
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important;
+    }
+  }
+}
+
+@layer components {
+  /* Wrapper used by every section so the grid lines up edge to edge. */
+  .shell {
+    width: 95%;
+    margin: 0 auto;
+    padding-inline: var(--spacing-gutter);
+  }
+
+  /* (WORK) / (CONTACT) / (LET'S TALK) — 32px phone, 40px tablet, 60px desktop. */
+  .section-title {
+    font-family: var(--font-display);
+    font-weight: 900;
+    font-size: 2rem;
+    line-height: 1.2;
+  }
+
+  @media (min-width: 48rem) {
+    .section-title {
+      font-size: 2.5rem;
+    }
+  }
+
+  @media (min-width: 64rem) {
+    .section-title {
+      font-size: 3.75rem;
+    }
+  }
+}
