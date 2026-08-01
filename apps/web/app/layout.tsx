@@ -3,6 +3,7 @@ import { inter, interDisplay, pecita } from "./fonts";
 import { ThemeProvider } from "@/components/ThemeProvider";
 import { SmoothScroll } from "@/components/SmoothScroll";
 import { getSettings } from "@/sanity/fetch";
+import { SITE_URL } from "@/lib/siteUrl";
 import "./globals.css";
 
 // ISR: las páginas se regeneran como máximo cada 60 s, de modo que los cambios
@@ -12,6 +13,7 @@ export const revalidate = 60;
 export async function generateMetadata(): Promise<Metadata> {
   const { site, hero } = await getSettings();
   return {
+    metadataBase: new URL(SITE_URL),
     title: site.wordmark,
     description: site.description,
     openGraph: {
