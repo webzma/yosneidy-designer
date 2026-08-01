@@ -31,6 +31,7 @@ export const SETTINGS_QUERY = `*[_type == "siteSettings" && _id == "siteSettings
   projectsPage,
   contact,
   letsTalk,
+  notFound,
   footer
 }`;
 
@@ -53,5 +54,6 @@ export type SettingsQueryResult = {
   projectsPage: { title: string; intro: string };
   contact: { title: string; image: CmsImage; blurb: string; socials: LinkItem[] };
   letsTalk: { title: string; image: CmsImage; eyebrow: string; blurb: string; cta: Cta };
+  notFound: { title: string; blurb: string; cta: Cta };
   footer: { credit: string; location: string; rights: string };
 };

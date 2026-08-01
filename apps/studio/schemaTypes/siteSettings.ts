@@ -107,6 +107,16 @@ export const siteSettings = defineType({
       ],
     }),
     defineField({
+      name: "notFound",
+      title: "Página 404",
+      type: "object",
+      fields: [
+        defineField({ name: "title", title: "Título", type: "string", validation: (rule) => rule.required() }),
+        defineField({ name: "blurb", title: "Texto", type: "text", rows: 2, validation: (rule) => rule.required() }),
+        ctaField,
+      ],
+    }),
+    defineField({
       name: "footer",
       title: "Pie de página",
       type: "object",

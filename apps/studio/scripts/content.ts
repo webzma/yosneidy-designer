@@ -116,6 +116,12 @@ export const letsTalk = {
   cta: { label: "Agenda una llamada", href: "https://cal.com" },
 };
 
+export const notFound = {
+  title: "(404)",
+  blurb: "La página que buscas no existe o fue movida.",
+  cta: { label: "Volver al inicio", href: "/" },
+};
+
 export const footer = {
   credit: "Hecho por @webzma",
   location: "Santa Cruz de Tenerife, España",

@@ -40,6 +40,7 @@ export type SiteSettings = {
     blurb: string;
     cta: Cta;
   };
+  notFound: { title: string; blurb: string; cta: Cta };
   footer: { credit: string; location: string; rights: string };
 };
 
@@ -81,6 +82,7 @@ function mapSettings(doc: SettingsQueryResult): SiteSettings {
       blurb: doc.letsTalk.blurb,
       cta: doc.letsTalk.cta,
     },
+    notFound: doc.notFound,
     footer: doc.footer,
   };
 }

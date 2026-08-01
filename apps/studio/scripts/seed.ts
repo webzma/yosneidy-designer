@@ -19,6 +19,7 @@ import {
   hero,
   letsTalk,
   nav,
+  notFound,
   projectsPage,
   site,
   work,
@@ -68,6 +69,7 @@ async function main() {
       blurb: letsTalk.blurb,
       cta: letsTalk.cta,
     },
+    notFound,
     footer,
   };
   await client.createOrReplace(siteSettings);
