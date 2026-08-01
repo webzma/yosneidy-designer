@@ -1,15 +1,18 @@
 /**
- * Every string and image path the page renders. Editing this file is enough to
- * rebrand the site — no component needs to be touched.
+ * Contenido inicial del sitio: es la fuente del seed (`scripts/seed.ts`).
+ * Una vez sembrado, el contenido se edita en el Studio y el sitio lo lee
+ * de Sanity vía `apps/web/sanity/fetch.ts`.
  */
 
 export const site = {
   name: "Yosneidy",
   wordmark: "YOSNEIDY",
   email: "hello@delane.com",
-  location: "Con base en Brooklyn, Nueva York",
+  location: "Con base en Santa Cruz de Tenerife, España",
   availability: "Disponible para proyectos",
   scheduleUrl: "https://cal.com",
+  description:
+    "Portafolio de diseñadora creativa con diseños limpios, modos claro y oscuro, tipografía elegante y secciones totalmente personalizables.",
 };
 
 export const nav = [
@@ -33,7 +36,7 @@ export const work = {
   title: "(PROYECTOS)",
   intro:
     "Una selección de proyectos centrados en diseño moderno, interacciones fluidas y experiencias digitales de alto rendimiento.",
-  cta: { label: "Ver todos los proyectos", href: "#work" },
+  cta: { label: "Ver todos los proyectos", href: "/proyectos" },
   projects: [
     {
       id: "01",
@@ -80,6 +83,12 @@ export const work = {
   ],
 };
 
+export const projectsPage = {
+  title: "(PROYECTOS)",
+  intro:
+    "El archivo completo: cada proyecto con su enfoque de diseño, interacción y desarrollo frontend.",
+};
+
 export const contact = {
   title: "(CONTACTO)",
   image: {
@@ -108,9 +117,7 @@ export const letsTalk = {
 };
 
 export const footer = {
-  credit: "Hecho por Neo",
-  location: "Nueva York",
-  // Hardcoded rather than derived from `new Date()` so the server and client
-  // renders can never disagree and trigger a hydration mismatch.
+  credit: "Hecho por @webzma",
+  location: "Santa Cruz de Tenerife, España",
   rights: "© 2026 Todos los derechos reservados",
 };

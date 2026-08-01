@@ -4,9 +4,9 @@ import { DotLink } from "./DotLink";
 import { ParallaxImage } from "./ParallaxImage";
 import { Reveal } from "./Reveal";
 import { ScrollDrift } from "./ScrollDrift";
-import { letsTalk } from "@/data/content";
+import type { LetsTalkContent } from "@/sanity/fetch";
 
-export function LetsTalk() {
+export function LetsTalk({ letsTalk }: { letsTalk: LetsTalkContent }) {
   return (
     <section id="about" className="shell pb-16 lg:pb-18">
       <Reveal>

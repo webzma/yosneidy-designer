@@ -3,9 +3,9 @@
 import { ParallaxImage } from "./ParallaxImage";
 import { Reveal } from "./Reveal";
 import { ScrollDrift } from "./ScrollDrift";
-import { contact, site } from "@/data/content";
+import type { ContactContent, Site } from "@/sanity/fetch";
 
-export function Contact() {
+export function Contact({ site, contact }: { site: Site; contact: ContactContent }) {
   return (
     <section id="contact" className="shell pb-16 lg:pb-36">
       <Reveal>

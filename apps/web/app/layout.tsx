@@ -2,20 +2,26 @@ import type { Metadata } from "next";
 import { inter, interDisplay, pecita } from "./fonts";
 import { ThemeProvider } from "@/components/ThemeProvider";
 import { SmoothScroll } from "@/components/SmoothScroll";
+import { getSettings } from "@/sanity/fetch";
 import "./globals.css";
 
-export const metadata: Metadata = {
-  title: "DELANE — Portafolio de desarrollador creativo",
-  description:
-    "Plantilla de portafolio moderna para diseñadores, desarrolladores y creativos, con diseños limpios, modos claro y oscuro, tipografía elegante y secciones totalmente personalizables.",
-  openGraph: {
-    type: "website",
-    title: "DELANE — Portafolio de desarrollador creativo",
-    description:
-      "Plantilla de portafolio moderna para diseñadores, desarrolladores y creativos, con diseños limpios, modos claro y oscuro, tipografía elegante y secciones totalmente personalizables.",
-    images: ["/img/hero.png"],
-  },
-};
+// ISR: las páginas se regeneran como máximo cada 60 s, de modo que los cambios
+// hechos en el Studio aparecen sin reconstruir el sitio.
+export const revalidate = 60;
+
+export async function generateMetadata(): Promise<Metadata> {
+  const { site, hero } = await getSettings();
+  return {
+    title: site.wordmark,
+    description: site.description,
+    openGraph: {
+      type: "website",
+      title: site.wordmark,
+      description: site.description,
+      images: [hero.image.src],
+    },
+  };
+}
 
 /**
  * Applies the stored theme before first paint. Without this the page would
@@ -30,7 +36,11 @@ const themeScript = `
 })();
 `;
 
-export default function RootLayout({ children }: { children: React.ReactNode }) {
+export default function RootLayout({
+  children,
+}: {
+  children: React.ReactNode;
+}) {
   return (
     <html
       lang="es"

@@ -6,9 +6,9 @@ import { FitText } from "./FitText";
 import { ParallaxImage } from "./ParallaxImage";
 import { Reveal } from "./Reveal";
 import { ScrollDrift } from "./ScrollDrift";
-import { hero, site } from "@/data/content";
+import type { HeroContent, Site } from "@/sanity/fetch";
 
-export function Hero() {
+export function Hero({ site, hero }: { site: Site; hero: HeroContent }) {
   const reduce = useReducedMotion();
 
   return (

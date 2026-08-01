@@ -1,10 +1,11 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import { usePathname } from "next/navigation";
 import { HoverLetters } from "./HoverLetters";
 import { useTheme } from "./ThemeProvider";
 import { lenisStore } from "@/lib/lenis";
-import { nav, site } from "@/data/content";
+import type { NavItem, Site } from "@/sanity/fetch";
 
 function ThemeToggle() {
   const { theme, setTheme } = useTheme();
@@ -34,8 +35,12 @@ function ThemeToggle() {
   );
 }
 
-export function Navbar() {
+export function Navbar({ site, nav }: { site: Site; nav: NavItem[] }) {
   const [open, setOpen] = useState(false);
+  const pathname = usePathname();
+  /* Nav links are same-page anchors on the home page; off it they must carry
+     the "/" prefix so they still land on the right section. */
+  const home = pathname === "/" ? "" : "/";
 
   // Keep the page from scrolling behind the open mobile sheet.
   useEffect(() => {
@@ -62,7 +67,7 @@ export function Navbar() {
           so a blend on a child would be isolated and never see the page. */}
       <header className="fixed inset-x-0 top-0 z-50 text-paper mix-blend-difference">
         <div className="shell flex items-center justify-between py-6">
-          <a href="#home" className="font-script text-2xl leading-none" aria-label={`${site.name} — inicio`}>
+          <a href={`${home}#home`} className="font-script text-2xl leading-none" aria-label={`${site.name} — inicio`}>
             {site.name}
           </a>
 
@@ -73,7 +78,7 @@ export function Navbar() {
             </span>
             <nav className="flex items-center gap-6 text-sm font-medium">
               {nav.map((item) => (
-                <a key={item.href} href={item.href}>
+                <a key={item.href} href={`${home}${item.href}`}>
                   <HoverLetters text={item.label} />
                 </a>
               ))}
@@ -103,7 +108,7 @@ export function Navbar() {
           {nav.map((item) => (
             <a
               key={item.href}
-              href={item.href}
+              href={`${home}${item.href}`}
               onClick={() => setOpen(false)}
               className="font-display text-4xl font-black tracking-tight"
             >

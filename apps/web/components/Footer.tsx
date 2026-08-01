@@ -3,9 +3,9 @@
 import { FitText } from "./FitText";
 import { Reveal } from "./Reveal";
 import { ScrollDrift } from "./ScrollDrift";
-import { footer, site } from "@/data/content";
+import type { FooterContent, Site } from "@/sanity/fetch";
 
-export function Footer() {
+export function Footer({ site, footer }: { site: Site; footer: FooterContent }) {
   return (
     <footer className="shell pt-3 pb-3">
       <Reveal>
@@ -20,7 +20,7 @@ export function Footer() {
       </Reveal>
 
       {/* The credit only appears on desktop; mobile keeps location + rights. */}
-      <div className="mt-5 flex justify-between gap-2 text-sm font-semibold leading-none sm:mt-6 sm:grid sm:grid-cols-3">
+      <div className="mt-5 pt-3 flex justify-between gap-2 text-sm font-semibold leading-none sm:mt-6 sm:grid sm:grid-cols-3">
         <p className="hidden sm:block">{footer.credit}</p>
         <p className="sm:text-center">{footer.location}</p>
         <p className="sm:text-right">{footer.rights}</p>

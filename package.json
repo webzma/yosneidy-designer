@@ -1,0 +1,9 @@
+{
+  "name": "designer",
+  "private": true,
+  "scripts": {
+    "dev": "pnpm --filter web dev",
+    "build": "pnpm --filter web build",
+    "studio": "pnpm --filter studio dev"
+  }
+}

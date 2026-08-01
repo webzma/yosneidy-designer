@@ -3,8 +3,10 @@
 import { HoverLetters } from "./HoverLetters";
 
 /**
- * The site's only button style: a small dot followed by the label, with the
- * per-letter roll on hover. Used for "Hablemos", "Ver todos los proyectos"
+ * The site's only button style: the label inside a pill outline, a small dot
+ * in front, and the per-letter roll on hover. The border and the hover tint
+ * both derive from currentColor, so the same pill works on paper and on the
+ * dark "Hablemos" photograph. Used for "Hablemos", "Ver todos los proyectos"
  * and "Agenda una llamada".
  */
 export function DotLink({
@@ -22,7 +24,7 @@ export function DotLink({
     <a
       href={href}
       {...(external ? { target: "_blank", rel: "noopener noreferrer" } : {})}
-      className={`group/dot inline-flex items-center gap-2 text-sm ${className}`}
+      className={`group/dot inline-flex w-fit items-center gap-2 rounded-full border border-current/30 px-5 py-2.5 text-sm transition-[border-color,background-color] duration-300 hover:border-current hover:bg-current/10 ${className}`}
     >
       <span
         aria-hidden
