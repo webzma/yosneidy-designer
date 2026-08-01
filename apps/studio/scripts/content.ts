@@ -17,7 +17,7 @@ export const site = {
 
 export const nav = [
   { label: "Inicio", href: "#home" },
-  { label: "Sobre mí", href: "#about" },
+  { label: "Sobre mí", href: "/sobre-mi" },
   { label: "Proyectos", href: "#work" },
   { label: "Contacto", href: "#contact" },
 ];
@@ -114,6 +114,19 @@ export const letsTalk = {
   blurb:
     "Creemos una experiencia digital cuidada que refleje tu visión con claridad, propósito e impacto duradero.",
   cta: { label: "Agenda una llamada", href: "https://cal.com" },
+};
+
+export const aboutPage = {
+  title: "(SOBRE MÍ)",
+  image: {
+    src: "/img/contact.png",
+    alt: "Retrato surcado por luz cálida sobre un fondo azul profundo",
+  },
+  intro:
+    "Soy una diseñadora y desarrolladora frontend con base en Tenerife, enfocada en crear experiencias digitales que combinan estética, movimiento y rendimiento.",
+  body: "Llevo años trabajando en la intersección entre diseño y código: del concepto visual a la implementación final, cuidando cada detalle del recorrido.\n\nMi enfoque parte de la tipografía, el espacio y el movimiento como herramientas de comunicación. Creo interfaces que se sienten vivas sin sacrificar velocidad ni accesibilidad.\n\nHe colaborado con estudios, marcas y clientes independientes en proyectos de identidad digital, sitios editoriales y experiencias interactivas.",
+  services: ["Dirección de arte", "Diseño web y UI", "Desarrollo frontend", "Motion e interacción"],
+  cta: { label: "Hablemos", href: "/#contact" },
 };
 
 export const notFound = {

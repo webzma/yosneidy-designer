@@ -14,6 +14,7 @@ import path from "node:path";
 import { createReadStream } from "node:fs";
 import { getCliClient } from "sanity/cli";
 import {
+  aboutPage,
   contact,
   footer,
   hero,
@@ -68,6 +69,14 @@ async function main() {
       eyebrow: letsTalk.eyebrow,
       blurb: letsTalk.blurb,
       cta: letsTalk.cta,
+    },
+    aboutPage: {
+      title: aboutPage.title,
+      image: await uploadImage(aboutPage.image.src, aboutPage.image.alt),
+      intro: aboutPage.intro,
+      body: aboutPage.body,
+      services: aboutPage.services,
+      cta: aboutPage.cta,
     },
     notFound,
     footer,

@@ -7,5 +7,6 @@ export default function sitemap(): MetadataRoute.Sitemap {
   return [
     { url: SITE_URL, lastModified: new Date(), priority: 1 },
     { url: `${SITE_URL}/proyectos`, lastModified: new Date(), priority: 0.8 },
+    { url: `${SITE_URL}/sobre-mi`, lastModified: new Date(), priority: 0.8 },
   ];
 }

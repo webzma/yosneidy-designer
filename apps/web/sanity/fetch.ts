@@ -41,6 +41,14 @@ export type SiteSettings = {
     cta: Cta;
   };
   notFound: { title: string; blurb: string; cta: Cta };
+  aboutPage: {
+    title: string;
+    image: CmsImageValue;
+    intro: string;
+    body: string;
+    services: string[];
+    cta: Cta;
+  };
   footer: { credit: string; location: string; rights: string };
 };
 
@@ -52,6 +60,7 @@ export type WorkSection = SiteSettings["work"];
 export type ProjectsPageContent = SiteSettings["projectsPage"];
 export type ContactContent = SiteSettings["contact"];
 export type LetsTalkContent = SiteSettings["letsTalk"];
+export type AboutPageContent = SiteSettings["aboutPage"];
 export type FooterContent = SiteSettings["footer"];
 
 function cmsImage(image: CmsImage): CmsImageValue {
@@ -83,6 +92,14 @@ function mapSettings(doc: SettingsQueryResult): SiteSettings {
       cta: doc.letsTalk.cta,
     },
     notFound: doc.notFound,
+    aboutPage: {
+      title: doc.aboutPage.title,
+      image: cmsImage(doc.aboutPage.image),
+      intro: doc.aboutPage.intro,
+      body: doc.aboutPage.body,
+      services: doc.aboutPage.services,
+      cta: doc.aboutPage.cta,
+    },
     footer: doc.footer,
   };
 }

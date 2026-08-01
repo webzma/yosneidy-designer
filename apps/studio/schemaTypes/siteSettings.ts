@@ -107,6 +107,31 @@ export const siteSettings = defineType({
       ],
     }),
     defineField({
+      name: "aboutPage",
+      title: "Página sobre mí",
+      type: "object",
+      fields: [
+        defineField({ name: "title", title: "Título", type: "string", validation: (rule) => rule.required() }),
+        imageField("image", "Retrato"),
+        defineField({ name: "intro", title: "Introducción", type: "text", rows: 3, validation: (rule) => rule.required() }),
+        defineField({
+          name: "body",
+          title: "Biografía",
+          type: "text",
+          rows: 8,
+          description: "Los párrafos se separan con una línea en blanco.",
+          validation: (rule) => rule.required(),
+        }),
+        defineField({
+          name: "services",
+          title: "Servicios",
+          type: "array",
+          of: [defineField({ name: "service", title: "Servicio", type: "string" })],
+        }),
+        ctaField,
+      ],
+    }),
+    defineField({
       name: "notFound",
       title: "Página 404",
       type: "object",

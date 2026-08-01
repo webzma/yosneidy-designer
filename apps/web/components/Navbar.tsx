@@ -38,9 +38,11 @@ function ThemeToggle() {
 export function Navbar({ site, nav }: { site: Site; nav: NavItem[] }) {
   const [open, setOpen] = useState(false);
   const pathname = usePathname();
-  /* Nav links are same-page anchors on the home page; off it they must carry
-     the "/" prefix so they still land on the right section. */
+  /* Anchor links ("#work") are same-page on the home page; off it they must
+     carry the "/" prefix so they still land on the right section. Absolute
+     paths ("/sobre-mi") are used as-is. */
   const home = pathname === "/" ? "" : "/";
+  const navHref = (href: string) => (href.startsWith("/") ? href : `${home}${href}`);
 
   // Keep the page from scrolling behind the open mobile sheet.
   useEffect(() => {
@@ -78,7 +80,7 @@ export function Navbar({ site, nav }: { site: Site; nav: NavItem[] }) {
             </span>
             <nav className="flex items-center gap-6 text-sm font-medium">
               {nav.map((item) => (
-                <a key={item.href} href={`${home}${item.href}`}>
+                <a key={item.href} href={navHref(item.href)}>
                   <HoverLetters text={item.label} />
                 </a>
               ))}
@@ -108,7 +110,7 @@ export function Navbar({ site, nav }: { site: Site; nav: NavItem[] }) {
           {nav.map((item) => (
             <a
               key={item.href}
-              href={`${home}${item.href}`}
+              href={navHref(item.href)}
               onClick={() => setOpen(false)}
               className="font-display text-4xl font-black tracking-tight"
             >
