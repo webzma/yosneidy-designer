@@ -4,6 +4,7 @@
   "scripts": {
     "dev": "pnpm --filter web dev",
     "build": "pnpm --filter web build",
-    "studio": "pnpm --filter studio dev"
+    "studio": "pnpm --filter studio dev",
+    "deploy": "pnpm run --filter studio deploy"
   }
 }
