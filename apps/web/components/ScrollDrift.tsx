@@ -24,6 +24,10 @@ export function ScrollDrift({
   const ref = useRef<HTMLDivElement>(null);
   const reduce = useReducedMotion();
   const [isMobile, setIsMobile] = useState(false);
+  /* The first paint (SSR / pre-hydration) renders without transform: the
+     SSR-time MotionValue is a guess that left titles overlapping neighbours
+     on phones while JS loaded. The drift only applies once mounted. */
+  const [mounted, setMounted] = useState(false);
   const { scrollYProgress } = useScroll({
     target: ref,
     offset: ["start end", "end start"],
@@ -31,6 +35,7 @@ export function ScrollDrift({
   const y = useTransform(scrollYProgress, [0, 1], [distance, -distance]);
 
   useEffect(() => {
+    setMounted(true);
     const mq = window.matchMedia("(max-width: 47.99rem)");
     const update = () => setIsMobile(mq.matches);
     update();
@@ -41,7 +46,7 @@ export function ScrollDrift({
   if (reduce || isMobile) return <div className={className}>{children}</div>;
 
   return (
-    <motion.div ref={ref} className={className} style={{ y }}>
+    <motion.div ref={ref} className={className} style={{ y: mounted ? y : 0 }}>
       {children}
     </motion.div>
   );
